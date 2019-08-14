@@ -6,6 +6,6 @@
         "project_name": "chinesewordaday", 
         "runtime": "python2.7", 
         "s3_bucket": "zappa-chinesewordaday",
-        "keep_warm_expression": "rate(10 minutes)"
+        "keep_warm_expression": "rate(30 minutes)"
     }
 }

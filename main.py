@@ -13,7 +13,7 @@ def get_word():
         "updateDate": datetime.today().strftime('%Y-%m-%dT00:00:00.0Z'),
         "titleText": "ChineseWordADay",
         "mainText": "",
-        "streamUrl": "https://s3.amazonaws.com/chinese-word-a-day/current/sample.mp3",
+        "streamUrl": "https://s3.amazonaws.com/chinese-word-a-day/%s.mp3" % datetime.today().strftime('%m%d%Y'),
         "redirectionUrl": "https://s3.amazonaws.com/chinese-word-a-day/redirect.html"
     })
 
