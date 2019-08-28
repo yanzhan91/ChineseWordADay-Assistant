@@ -8,14 +8,24 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def get_word():
-    return jsonify({
-        "uid": uuid.uuid4(),
-        "updateDate": datetime.today().strftime('%Y-%m-%dT00:00:00.0Z'),
-        "titleText": "ChineseWordADay",
-        "mainText": "",
-        "streamUrl": "https://s3.amazonaws.com/chinese-word-a-day/%s.mp3" % datetime.today().strftime('%m%d%Y'),
-        "redirectionUrl": "https://s3.amazonaws.com/chinese-word-a-day/redirect.html"
-    })
+    url = "https://s3.amazonaws.com/chinese-word-a-day/%s.mp3" % datetime.today().strftime('%m%d%Y')
+    json = {
+        'payload': {
+            'google': {
+                'expectUserResponse': False,
+                'richResponse': {
+                    'items': [
+                        {
+                            'simpleResponse': {
+                                'textToSpeech': '<speak><audio src="%s"></audio></speak>' % url
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+    return jsonify(json)
 
 
 if __name__ == '__main__':
